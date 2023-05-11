@@ -15,6 +15,10 @@ import { Avatar, AvatarBadge, AvatarGroup } from '@chakra-ui/react'
 import { Box, Icon, VStack, useColorModeValue, Tooltip, Flex } from '@chakra-ui/react';
 import { AiFillHome, AiOutlineSetting } from 'react-icons/ai';
 import { useHistory } from 'react-router-dom';
+import { useColorMode } from "@chakra-ui/react";
+import { Button } from "@chakra-ui/react";
+import { IoMdMoon, IoMdSunny } from "react-icons/io";
+
 
 
 export const PlatformContext = createContext();
@@ -43,6 +47,9 @@ const MiniSidebar = () => {
   const handleProfileClick = () => {
     history.push('/profile');
   };
+
+  const { colorMode, toggleColorMode } = useColorMode();
+  const navbarIcon = useColorModeValue("gray.400", "white");
 
   return (
     <Box
@@ -243,6 +250,24 @@ const MiniSidebar = () => {
         _hover={{ boxSize: 8, cursor: 'pointer' }}
         // onClick={handleButtonClick2}
       />
+
+    <Button
+      variant='no-hover'
+      bg='transparent'
+      p='0px'
+      minW='unset'
+      minH='unset'
+      h='18px'
+      w='max-content'
+      onClick={toggleColorMode}>
+      <Icon
+        me='10px'
+        h='18px'
+        w='18px'
+        color={navbarIcon}
+        as={colorMode === "light" ? IoMdMoon : IoMdSunny}
+      />
+    </Button>
       </VStack>
       <Spacer /> {/* Add this Spacer component here */}
 
