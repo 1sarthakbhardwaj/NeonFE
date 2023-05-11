@@ -241,7 +241,7 @@ function Sidebar(props) {
           />
           </Box>
           <Box mt={80} />
-          // ...
+
         <HelpSection
           textColor={textColor}
           hoverColor={hoverColor}
@@ -250,7 +250,7 @@ function Sidebar(props) {
           openHelpCenter={openHelpCenter}
           openChatSupport={openChatSupport}
         />
-// ...
+
 
            </Scrollbars>
       </Box>   
