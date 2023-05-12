@@ -1,4 +1,4 @@
-import { Avatar, Box, Flex, FormLabel, Icon, Select, SimpleGrid, useColorModeValue, Table, Thead, Tbody, Tr, Th, Td, HStack, VStack } from "@chakra-ui/react";
+import { Avatar, Box, Flex, FormLabel, Icon, Select, SimpleGrid, useColorModeValue, useColorMode,   Table, Thead, Tbody, Tr, Th, Td, HStack, VStack } from "@chakra-ui/react";
 import ClickableMiniStatistics from 'components/card/ClickableMiniStatistics';
 import { LineChart, Line, Label, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, PieChart, Pie, Cell } from 'recharts';
 import React, { useState, useEffect, useRef } from 'react';
@@ -116,6 +116,9 @@ const metricColor = {
   CTR: "#0D9488",
   CR: "#8B5F33",
 };
+
+const { colorMode } = useColorMode();
+
 
 const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042'];
 const [selectedValue, setSelectedValue] = useState('GMV');
@@ -267,8 +270,16 @@ const bgFocus = useColorModeValue({ bg: "secondaryGray.300" }, { bg: "whiteAlpha
 
       {/*...linechart*/}
 
-      <Box width="100%" minW='75%' pt="40px" height="400px"backgroundColor="white"  borderRadius="xl" >
-        <ResponsiveContainer>
+      <Box
+         width="100%"
+         minW="75%"
+         pt="40px"
+         height="400px"
+         backgroundColor={colorMode === 'dark' ? '#1A202C' : 'white'}
+         borderRadius="xl"
+      >  
+
+     <ResponsiveContainer>
       <LineChart
           width={800} // Adjust the width as needed
           height={200} // Adjust the height as needed
@@ -276,7 +287,7 @@ const bgFocus = useColorModeValue({ bg: "secondaryGray.300" }, { bg: "whiteAlpha
           margin={{ top: 5, right: 50, left: 50, bottom: 5 }}
       >
 
-          <CartesianGrid strokeDasharray="3 3" />
+         <CartesianGrid strokeDasharray="3 3" stroke={colorMode === 'dark' ? '#4A5568' : '#ccc'} />  
           <XAxis
           dataKey="Date"
           axisLine={true}
@@ -285,10 +296,12 @@ const bgFocus = useColorModeValue({ bg: "secondaryGray.300" }, { bg: "whiteAlpha
           textAnchor="end" // Change text anchor to 'end'
           interval={0} // Set interval to 0 to show all the dates
           style={{
-          fontSize: "12px",
-          fontWeight: "500",
-          color: "#A3AED0"
-        }}
+            fontSize: "12px",
+            fontWeight: "500",
+            color: colorMode === 'dark' ? 'white' : '#333',
+          }}
+          
+          
         tickFormatter={(tick) => {
           const date = new Date(tick);
           const day = date.getDate();
@@ -302,18 +315,25 @@ const bgFocus = useColorModeValue({ bg: "secondaryGray.300" }, { bg: "whiteAlpha
       orientation="left"
       tickFormatter={(tick) => tick.toLocaleString()}
       tickInterval={Math.max(...selectedMetrics.map((metric) => getSettings(metric, selectedMetrics).stepSize)) / 2}
+      style={{
+        fontSize: "16px",
+        fontWeight: "500",
+        color: colorMode === 'dark' ? 'white' : '#333',
+      }}      
       >
+
        <Label
             value={selectedMetrics[0]} // This will display the name of the selected metric
             angle={-90} // Rotate the label by 90 degrees
             position="insideLeft" // Position the label inside the left Y-axis
             offset={-20} // Adjust the offset to place the label correctly
-            style={{
-              fontSize: "16px",
-              fontWeight: "500",
-              color: "#A3AED0",
-              textAnchor: "middle",
-            }}
+              style={{
+                fontSize: "16px",
+                fontWeight: "500",
+                color: colorMode === 'dark' ? 'white' : '#333',
+                textAnchor: "middle",
+              }}
+
           /> 
       </YAxis>
     
@@ -322,6 +342,13 @@ const bgFocus = useColorModeValue({ bg: "secondaryGray.300" }, { bg: "whiteAlpha
       orientation="right"
       tickFormatter={(tick) => tick.toLocaleString()}
       tickInterval={Math.max(...selectedMetrics.map((metric) => getSettings(metric, selectedMetrics).stepSize)) / 2}
+      
+      style={{
+        fontSize: "16px",
+        fontWeight: "500",
+        color: colorMode === 'dark' ? 'white' : '#333',
+      }}
+      
     >
           <Label
         value={selectedMetrics[1]} // This will display the name of the selected metric
@@ -331,7 +358,7 @@ const bgFocus = useColorModeValue({ bg: "secondaryGray.300" }, { bg: "whiteAlpha
         style={{
           fontSize: "16px",
           fontWeight: "500",
-          color: "#A3AED0",
+          color: colorMode === 'dark' ? 'white' : '#333',
           textAnchor: "middle",
         }}
       /> 
