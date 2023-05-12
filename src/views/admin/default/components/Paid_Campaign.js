@@ -79,7 +79,7 @@ const ECommerceCampaignReport = () => {
   const CR = calculatePercentage(calculateMetrics('Conversions'), calculateMetrics('Clicks'));
   const ROAS = calculateMetrics('Expense') === 0 ? 0 : calculateMetrics('GMV') / calculateMetrics('Expense');
 
-const [selectedMetrics, setSelectedMetrics] = useState(['Impression', 'Clicks']);
+const [selectedMetrics, setSelectedMetrics] = useState(['Items Sold', 'CTR']);
 const handleMetricSelection = (metricName) => {
   if (selectedMetrics.includes(metricName)) {
     setSelectedMetrics(selectedMetrics.filter((metric) => metric !== metricName));
@@ -130,6 +130,7 @@ const iconColor = useColorModeValue("brand.500", "white");
 const bgButton = useColorModeValue("secondaryGray.300", "whiteAlpha.100");
 const bgHover = useColorModeValue({ bg: "secondaryGray.400" }, { bg: "whiteAlpha.50" });
 const bgFocus = useColorModeValue({ bg: "secondaryGray.300" }, { bg: "whiteAlpha.100" });
+console.log("Current color mode:", colorMode);
 
   return (
     <div>
@@ -382,23 +383,27 @@ const bgFocus = useColorModeValue({ bg: "secondaryGray.300" }, { bg: "whiteAlpha
     <Tooltip />
 
    {/*Piechart*/}
-<Text
+   
+
+   <Text
   fontSize="xl"
   fontWeight="bold"
   textAlign="left"
-  mt="40px" // Adjust this value to reduce the gap above the text
-  mb="-45px" // Adjust this value to reduce the gap below the text
+  mt="40px"
+  mb="-45px"
   ml={5}
+  color={colorMode === 'dark' ? 'white' : 'black'}
 >
   Performance by Ad type
 </Text>
 
+
 <Box
   width="100%"
   minW="75%"
-  pt="-60px" // Adjust this value to reduce the padding above the content inside the box
+  pt="-60px"
   height="500px"
-  backgroundColor="white"
+  backgroundColor={colorMode === 'dark' ? '#1A202C' : 'white'}
   borderRadius="xl"
 >
   <VStack spacing={6}>
@@ -416,6 +421,8 @@ const bgFocus = useColorModeValue({ bg: "secondaryGray.300" }, { bg: "whiteAlpha
               borderColor="gray.300"
               borderRadius="md"
               overflow="hidden"
+              backgroundColor={colorMode === 'dark' ? '#1A202C' : 'white'}
+
             >
               <AdPieChart filteredData={filteredData} />
             </Box>
@@ -436,24 +443,27 @@ const bgFocus = useColorModeValue({ bg: "secondaryGray.300" }, { bg: "whiteAlpha
     </ResponsiveContainer>
   </VStack>
 </Box>
-        <Text
-          fontSize="xl"
-          fontWeight="bold"
-          textAlign="left"
-          mt="50px" // Adjust this value to reduce the gap above the text
-          mb="-55px" // Adjust this value to reduce the gap below the text
-          ml={5}
-        >
-        Performance by SKU
-      </Text>
-          <Box
-            width="100%"
-            minW="75%"
-            pt="-40px" // Adjust this value to reduce the padding above the content inside the box
-            height="1000px"
-            backgroundColor="white"
-            borderRadius="xl"
-          >
+
+<Text
+  fontSize="xl"
+  fontWeight="bold"
+  textAlign="left"
+  mt="50px"
+  mb="-55px"
+  ml={5}
+  color={colorMode === 'dark' ? 'white' : 'black'}
+>
+  Performance by SKU
+</Text>
+
+      <Box
+        width="100%"
+        minW="75%"
+        pt="-40px"
+        height="1000px"
+        backgroundColor={colorMode === 'dark' ? '#1A202C' : 'white'}
+        borderRadius="xl"
+      >
             <VStack spacing={6}>
               <ResponsiveContainer width="100%" height={20}>
                 <HStack spacing={5}>

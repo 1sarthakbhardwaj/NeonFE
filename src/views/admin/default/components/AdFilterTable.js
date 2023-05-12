@@ -1,7 +1,8 @@
 import React from 'react';
-import { Box, Table, Thead, Tbody, Tr, Th, Td } from "@chakra-ui/react";
+import { Box, Table, Thead, Tbody, Tr, Th, Td, useColorMode } from "@chakra-ui/react";
 
 const AdFilterTable = ({ filteredData }) => {
+  const { colorMode } = useColorMode();
   const adTypes = ['Discovery Ads', 'Product Search Ad', 'Shop Search Ad'];
 
   const formatNumber = (value) => {
@@ -24,8 +25,16 @@ const AdFilterTable = ({ filteredData }) => {
   };
 
   return (
-    <Box mt={4} p={4} boxShadow="lg" bg="white" borderRadius="md" maxW="900px">
-      <Table variant="striped" colorScheme="gray" fontSize="sm"  >
+    <Box 
+      mt={4} 
+      p={4} 
+      boxShadow="lg" 
+      bg={colorMode === 'dark' ? '#1A202C' : 'white'} 
+      borderRadius="md" 
+      maxW="900px"
+      color={colorMode === 'dark' ? 'white' : 'black'}
+    >
+      <Table variant="striped" colorScheme={colorMode === 'dark' ? 'navy' : 'gray'} fontSize="sm">
       <Thead>
         <Tr>
           <Th minW="80px" maxW="80px" fontSize="10px">Ads Types</Th>
@@ -67,6 +76,7 @@ const AdFilterTable = ({ filteredData }) => {
             );
           })}
         </Tbody>
+
       </Table>
     </Box>
   );

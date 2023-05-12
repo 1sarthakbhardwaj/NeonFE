@@ -7,16 +7,19 @@ import {
   Tooltip,
   Legend,
 } from 'recharts';
-import { Box, Select, VStack, Text } from '@chakra-ui/react';
-
-const COLORS = ['#052D41', '#E99B26', '#00C6B1', '#00C6B1'];
-
+import { Box, Select, VStack, Text, useColorMode } from '@chakra-ui/react';
 
 const formatNumber = (value) => {
   return new Intl.NumberFormat().format(value);
 };
 
 const AdPieChart = ({ filteredData }) => {
+  const { colorMode } = useColorMode();
+
+  const COLORS = colorMode === 'dark' 
+    ? ['#FF7F0E', '#2CA02C', '#D62728', '#9467BD', '#8C564B'] 
+    : ['#052D41', '#E99B26', '#00C6B1', '#00C6B1'];
+
   const adTypes = ['Discovery Ads', 'Product Search Ad', 'Shop Search Ad'];
   const metrics = ['Impression', 'Clicks', 'Conversions', 'GMV', 'Expense'];
   const formatCurrency = (value) => {
@@ -25,7 +28,6 @@ const AdPieChart = ({ filteredData }) => {
       currency: 'VND',
     }).format(value);
   };
-
 
 
   const [selectedMetric, setSelectedMetric] = React.useState(metrics[0]);
@@ -53,15 +55,22 @@ const AdPieChart = ({ filteredData }) => {
       }
       
       return (
-        <Box p={2} bg="white" borderRadius="md" boxShadow="lg">
+        <Box 
+          p={2} 
+          bg={colorMode === 'dark' ? '#1A202C' : 'white'} 
+          borderRadius="md" 
+          boxShadow="lg"
+          color={colorMode === 'dark' ? 'white' : 'black'}
+        >
           <Text fontWeight="bold" fontSize="sm">{`${name}`}</Text>
           <Text fontSize="sm">{`${selectedMetric}: ${formattedValue}`}</Text>
         </Box>
       );
     }
-
+  
     return null;
   };
+  
   
 
   return (
@@ -70,7 +79,8 @@ const AdPieChart = ({ filteredData }) => {
         width="50%"
         value={selectedMetric}
         onChange={(e) => setSelectedMetric(e.target.value)}
-        bg="white"
+        bg={colorMode === 'dark' ? '#1A202C' : 'white'}
+        color={colorMode === 'dark' ? 'white' : 'black'}
         borderRadius="md"
         focusBorderColor="blue.500"
       >
@@ -80,6 +90,7 @@ const AdPieChart = ({ filteredData }) => {
           </option>
         ))}
       </Select>
+
       <ResponsiveContainer width="100%" height={300}>
         <PieChart>
           <Pie

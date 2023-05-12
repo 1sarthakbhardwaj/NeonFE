@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
-import { Box, Table, Thead, Tbody, Tr, Th, Td, Flex, IconButton } from "@chakra-ui/react";
+import { Box, Table, Thead, Tbody, Tr, Th, Td, Flex, IconButton, useColorMode } from "@chakra-ui/react";
 import { ChevronLeftIcon, ChevronRightIcon } from '@chakra-ui/icons';
 import { Text } from "@chakra-ui/react";
 
-
 const ProductTable = ({ data }) => {
+  const { colorMode } = useColorMode();
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(10);
 
@@ -52,16 +52,16 @@ const ProductTable = ({ data }) => {
   const displayData = Object.entries(aggregateData).slice(page * rowsPerPage, (page + 1) * rowsPerPage);
 
   return (
-    <Box mt={10} p={2} boxShadow="lg" bg="white" borderRadius="md">
-      {/* <Text
-        fontSize="xl"
-        fontWeight="bold"
-        textAlign="left"
-        mb="10px"
-      >
-        Performance by Product Name
-      </Text> */}
-      <Table variant="striped" mt="50px" colorScheme="gray" border="1px" borderColor="gray.200" borderRadius="md" fontSize="sm">
+    <Box 
+      mt={10} 
+      p={2} 
+      boxShadow="lg" 
+      bg={colorMode === 'dark' ? '#1A202C' : 'white'} 
+      borderRadius="md"
+      color={colorMode === 'dark' ? 'white' : 'black'}
+    >
+     {/* Replacing teal color */}
+      <Table variant="striped" mt="50px" colorScheme={colorMode === 'dark' ? 'navy' : 'gray'} border="1px" borderColor="gray.200" borderRadius="md" fontSize="sm">
         <Thead>
           <Tr>
             <Th>Product Name/ Ad Name</Th>
@@ -97,20 +97,21 @@ const ProductTable = ({ data }) => {
             </Tbody>
           </Table>
           <Flex justifyContent="flex-end" mt={4}>
-           <IconButton
+        <IconButton
           onClick={() => handleChangePage(page - 1)}
           isDisabled={page === 0}
           icon={<ChevronLeftIcon />}
           mr={2}
-            />
-            <IconButton
+        />
+
+        <IconButton
           onClick={() => handleChangePage(page + 1)}
           isDisabled={displayData.length < rowsPerPage}
           icon={<ChevronRightIcon />}
-           />
-             </Flex>
-             </Box>
+        />
+      </Flex>
+    </Box>
   );
 };
-            export default ProductTable;
-            
+
+export default ProductTable;
