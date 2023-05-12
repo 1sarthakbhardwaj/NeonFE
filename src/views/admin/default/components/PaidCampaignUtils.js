@@ -2,6 +2,7 @@ import React from 'react';
 import { Tooltip, Line } from 'recharts';
 import { Box, Icon } from '@chakra-ui/react';
 import { MdBarChart } from 'react-icons/md';
+import { useColorMode } from '@chakra-ui/react';
 
 export const generateIconBox = (boxBg, brandColor) => (
   <Box
@@ -15,7 +16,6 @@ export const generateIconBox = (boxBg, brandColor) => (
     <Icon as={MdBarChart} color={brandColor} w="28px" h="28px" />
   </Box>
 );
-
 
 export const formatChartData = (filteredData) => {
     const aggregatedData = {};
@@ -102,6 +102,9 @@ export const CustomTooltip = ({
     metricColor,
     formatTooltipValue,
   }) => {
+
+    const { colorMode } = useColorMode();
+
     const formatTooltipValueLocal = (payload, metricName) => {
         const metric = payload.find((p) => p.name === metricName);
     
@@ -115,7 +118,7 @@ export const CustomTooltip = ({
     if (active && payload && payload.length) {
       return (
         <div className="custom-tooltip">
-<       p className="label" style={{ fontSize: "12px", color: brandColor }}>
+      <p className="label" style={{ fontSize: "12px", color: colorMode === 'dark' ? 'black' : brandColor }}>
           {`Date: ${new Date(label).toLocaleDateString('en-GB', {day: '2-digit', month: '2-digit', year: 'numeric'})}`}
 
           </p>

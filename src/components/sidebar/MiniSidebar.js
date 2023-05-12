@@ -259,9 +259,11 @@ const MiniSidebar = () => {
       minH='unset'
       h='18px'
       w='max-content'
+      ml='15px'
       onClick={toggleColorMode}>
       <Icon
         me='10px'
+        ml={2}
         h='18px'
         w='18px'
         color={navbarIcon}
