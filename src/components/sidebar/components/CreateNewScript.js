@@ -9,7 +9,9 @@ import {
   IconButton,
   Text,
   Flex,
-  Button
+  Button,
+  useColorMode,
+  useColorModeValue
 } from '@chakra-ui/react';
 import { ChevronDownIcon, ChevronUpIcon } from '@chakra-ui/icons';
 import { Input } from "@chakra-ui/react";
@@ -18,6 +20,7 @@ import { CloseIcon } from '@chakra-ui/icons';
 
 
 const CreateNewScript = () => {
+  const { colorMode, toggleColorMode } = useColorMode();
   const [isOpen, setIsOpen] = useState(true); // Set default state to open
   const [conditions, setConditions] = useState([]); // State for storing conditions
 
@@ -33,7 +36,11 @@ const CreateNewScript = () => {
     setConditions(conditions.filter((_, i) => i !== index));
   };
 
-  
+   const bg = useColorModeValue("white", "gray.800");
+  const color = useColorModeValue("black", "white");
+  const borderColor = useColorModeValue("gray.300", "gray.600");
+  const buttonBg = useColorModeValue("linear(to-r, blue.400, teal.300)", "linear(to-l, blue.500, teal.400)");
+  const hoverButtonBg = useColorModeValue("linear(to-r, blue.400, blue.300)", "linear(to-l, blue.500, blue.400)");
   
 
   return (
@@ -43,33 +50,37 @@ const CreateNewScript = () => {
 </Flex>
 
 <VStack spacing={1} align="start" pl="0px">
-  <Box bg="white" borderRadius="md" boxShadow="base" p={2}>
-    <Heading as="h2" size="md">
+<Box bg={bg} color={color} borderRadius="md" boxShadow="base" p={2}>
+      <Heading as="h2" size="md">
       AI-Driven Automation/ Create New Script
     </Heading>
   </Box>
 
   <Flex justifyContent="flex-start" width="100%">
-    <Box
-      bg="white"
-      borderRadius="lg"
-      boxShadow="base"
-      p={4}
-      width="100%"
-      maxWidth="1500px"
-      marginRight="auto"
-      mt={4}
-    >
+  <Box
+  bg={bg} // bg is already changing based on the color mode
+  color={color} // color is already changing based on the color mode
+  borderRadius="lg"
+  boxShadow="base"
+  p={4}
+  width="100%"
+  maxWidth="1500px"
+  marginRight="auto"
+  mt={4}
+>
+
       <HStack>
         <Text fontSize="xl" fontWeight="bold" ml={35}>
           General Information
         </Text>
         <IconButton
-          icon={isOpen ? <ChevronUpIcon /> : <ChevronDownIcon />}
+          icon={<ChevronUpIcon color={color} />}
           onClick={handleToggle}
-          bgGradient="linear(to-r, blue.400, teal.300)"
-          color="white"
+          bgGradient={buttonBg}
+          _hover={{ bgGradient: hoverButtonBg }}
+          color={color}
         />
+
       </HStack>
       <Collapse in={isOpen}>
         <VStack align="start" spacing={4} ml={60}>
@@ -123,7 +134,8 @@ const CreateNewScript = () => {
 {/* Conditions : */}
 <Flex justifyContent="flex-start" width="100%">
       <Box
-        bg="white"
+        bg={bg} // bg is already changing based on the color mode
+        color={color} // color is already changing based on the color mode
         borderRadius="lg"
         boxShadow="base"
         p={4}
@@ -132,6 +144,7 @@ const CreateNewScript = () => {
         marginRight="auto"
         mt={4}
       >
+
         <VStack spacing={10} align="start" pl="0px">
           <Heading as="h2" size="md">
             Conditions :
@@ -190,15 +203,16 @@ const CreateNewScript = () => {
           <IconButton
             onClick={addCondition}
             bgGradient="linear(to-r, blue.400, teal.300)"
-            _hover={{ bgGradient: "linear(to-r, blue.400, blue.300)" }}
+            _hover={{ bgGradient: hoverButtonBg }}
             borderRadius="md"
+            color={color}
             p={2}
           >
             <Box as="span" display="flex" alignItems="center">
-              <Text as="span" mr={2} color="white">
+              <Text as="span" mr={2} color={color}>
                 +
               </Text>
-              <Text as="span" fontSize="sm" color="white">
+              <Text as="span" fontSize="sm" color= {color}>
                 Add More Condition
               </Text>
             </Box>
@@ -208,16 +222,18 @@ const CreateNewScript = () => {
     </Flex>
 
     <Flex justifyContent="flex-start" width="100%">
-  <Box
-    bg="white"
-    borderRadius="lg"
-    boxShadow="base"
-    p={4}
-    width="100%"
-    maxWidth="1500px"
-    marginRight="auto"
-    mt={4}
-  >
+    <Box
+  bg={bg} // bg is already changing based on the color mode
+  color={color} // color is already changing based on the color mode
+  borderRadius="lg"
+  boxShadow="base"
+  p={4}
+  width="100%"
+  maxWidth="1500px"
+  marginRight="auto"
+  mt={4}
+>
+
     <VStack spacing={10} align="start" pl="0px">
       <Heading as="h2" size="md">
         Action :
@@ -272,13 +288,13 @@ const CreateNewScript = () => {
 </Flex>
 
 <Flex justifyContent="flex-end" width="100%" p={4}>
-  <Button variant="outline" colorScheme="gray" mr={4}>
+  <Button variant="outline" borderColor={borderColor} mr={4}>
     Cancel
   </Button>
   <Button
-    color="white"
+    color={color}
     bgGradient="linear(to-r, blue.400, teal.300)"
-
+    borderColor={borderColor}            
     _hover={{ bgGradient: "linear(to-r, blue.400, blue.300)" }}
   >
     Submit

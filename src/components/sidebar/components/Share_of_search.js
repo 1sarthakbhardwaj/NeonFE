@@ -1,9 +1,7 @@
 import React from 'react';
 import { BarChart, Bar, XAxis, YAxis, Tooltip, Legend, CartesianGrid, Cell } from 'recharts';
-import { Box, Table, Thead, Tbody, Tr, Th, Td, Select, Input, Button, Flex, VStack, HStack } from '@chakra-ui/react';
+import { Box, Table, Thead, Tbody, Tr, Th, Td, Select, Input, Button, Flex, VStack, HStack, Text, useColorMode } from '@chakra-ui/react';
 import { ResponsiveContainer } from 'recharts';
-import { Text } from '@chakra-ui/react';
-import CreateNewScript from './CreateNewScript';
 
 
 const data = [
@@ -351,25 +349,13 @@ const getBarColor = (name) => {
   }
 };
 
-// const CustomTooltip = ({ active, payload, label }) => {
-//   if (active && payload && payload.length) {
-//     return (
-//       <Box p="2" bg="white" boxShadow="md" borderRadius="md">
-//         <Text color="gray.700" fontWeight="bold">
-//           {payload[0].payload.name}
-//         </Text>
-//         <Text color="gray.500">{`${payload[0].value} (%)`}</Text>
-//       </Box>
-//     );
-//   }
-//   return null;
-// };
+
 
 const DigitalShelfAnalysisTable = () => {
+  const { colorMode } = useColorMode();
   return (
     <>
-      <Box mt={5} p={5} boxShadow="lg" bg="white" borderRadius="md" maxW="1200px">
-      <Flex mt={100} ml={50} justifyContent="space-between" alignItems="center">
+          <Box mt={5} p={5} boxShadow="lg" bg={colorMode === 'dark' ? 'gray.800' : 'white'} color={colorMode === 'dark' ? 'white' : 'black'} borderRadius="md" maxW="1200px">      <Flex mt={100} ml={50} justifyContent="space-between" alignItems="center">
           <Select placeholder="Select a Retailer" maxWidth="200px">
             <option value="amazon">Amazon</option>
             <option value="walmart">Walmart</option>
@@ -391,8 +377,7 @@ const DigitalShelfAnalysisTable = () => {
         </Flex>
       </Box>
       
-      <Box mt={5} p={5} boxShadow="lg" bg="white" borderRadius="md" maxW="1200px">
-        <VStack mt={5} spacing={5}>
+      <Box mt={5} p={5} boxShadow="lg" bg={colorMode === 'dark' ? 'gray.800' : 'white'} color={colorMode === 'dark' ? 'white' : 'black'} borderRadius="md" maxW="1200px">        <VStack mt={5} spacing={5}>
           <HStack spacing={5} w="100%">
             <Box flex="1" height="60%">
             <VStack alignItems="center">
@@ -402,7 +387,7 @@ const DigitalShelfAnalysisTable = () => {
               <Box
                 height="100%"
                 borderWidth="1px"
-                borderColor="gray.300"
+                borderColor={colorMode === 'dark' ? 'gray.600' : 'gray.300'}
                 borderRadius="md"
                 overflow="hidden"
               >
@@ -426,12 +411,12 @@ const DigitalShelfAnalysisTable = () => {
             <Box flex="1" height="60%">
             <VStack alignItems="center">
               <Text fontSize="lg" fontWeight="bold">Top 10</Text>
-              <Text fontSize="sm" color="gray.500">Share of Search</Text>
-            </VStack>
+              <Text fontSize="sm" color={colorMode === 'dark' ? 'gray.200' : 'gray.500'}>Share of Search</Text>
+              </VStack>
               <Box
                 height="100%"
                 borderWidth="1px"
-                borderColor="gray.300"
+                borderColor={colorMode === 'dark' ? 'gray.600' : 'gray.300'}
                 borderRadius="md"
                 overflow="hidden"
               >
@@ -455,15 +440,16 @@ const DigitalShelfAnalysisTable = () => {
             <Box flex="1" height="60%">
             <VStack alignItems="center">
             <Text fontSize="lg" fontWeight="bold">Top 5</Text>
-            <Text fontSize="sm" color="gray.500">Share of Search</Text>
+            <Text fontSize="sm" color={colorMode === 'dark' ? 'gray.200' : 'gray.500'}>Share of Search</Text>
           </VStack>
               <Box
                 height="100%"
                 borderWidth="1px"
-                borderColor="gray.300"
+                borderColor={colorMode === 'dark' ? 'gray.600' : 'gray.300'}
                 borderRadius="md"
                 overflow="hidden"
               >
+
                 <ResponsiveContainer width="100%" height={300}>
                   <BarChart layout="vertical" data={data3}>
                   <Bar dataKey="value" radius={[0, 5, 5, 0]} activeDot={false}>
@@ -490,13 +476,13 @@ const DigitalShelfAnalysisTable = () => {
   mb={10}
   p={2}
   boxShadow="lg"
-  bg="white"
+  bg={colorMode === 'dark' ? 'gray.800' : 'white'}
+  color={colorMode === 'dark' ? 'white' : 'black'}
   borderRadius="md"
   maxW="1200px"
   overflowX="auto"
 >
-  <Table variant="striped" colorScheme="gray" fontSize="sm">
-    <Thead>
+    <Table variant="striped" colorScheme={colorMode === 'dark' ? 'navy' : 'gray'} fontSize="sm">    <Thead>
       <Tr>
         <Th width="50px">Page</Th>
         <Th width="50px">Rank</Th>
