@@ -1,5 +1,5 @@
 import React from 'react';
-import { Box, Table, Thead, Tbody, Tr, Th, Td } from "@chakra-ui/react";
+import { Box, Table, Thead, Tbody, Tr, Th, Td, color } from "@chakra-ui/react";
 import {
   Heading,
   VStack,
@@ -9,21 +9,26 @@ import {
   IconButton,
   Text,
   Flex,
-  Button
+  Button,
+  useColorMode 
 } from '@chakra-ui/react';
 import { Progress } from "@chakra-ui/react";
 
 const DigitalShelfAnalysisTable = () => {
+  const { colorMode } = useColorMode();
+  const bgColor = { light: "white", dark: "gray.800" };
+  const textColor = { light: "black", dark: "white" };
+  const borderColor = { light: "gray.300", dark: "gray.600" };
+  const tableColorScheme = { light: "gray", dark: "navy" };
+  
   return (
-
-    <Box mt={10} p={8} boxShadow="lg" bg="white" borderRadius="md">
-  <Box bg="white" borderRadius="md" boxShadow="base" p={2}>
+    <Box mt={10} p={8} boxShadow="lg" borderRadius="md" bg={bgColor[colorMode]} color={textColor[colorMode]} borderColor={borderColor[colorMode]}>
+    <Box bg={bgColor[colorMode]} borderRadius="md" boxShadow="base" p={2}>
     <Heading as="h2" size="md">
       Share of Voice
     </Heading>
   </Box>
-  <Table variant="striped" colorScheme="gray" fontSize="sm">
-  <Thead>
+  <Table variant="striped" colorScheme={tableColorScheme[colorMode]} fontSize="sm">  <Thead>
   <Tr>
     <Th fontSize="xs">Keyword</Th>
     <Th fontSize="xs">Keyword Type</Th>
