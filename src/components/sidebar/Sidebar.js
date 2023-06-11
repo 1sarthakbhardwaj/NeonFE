@@ -20,7 +20,7 @@ import {
   useDisclosure,
   useColorModeValue,
 } from '@chakra-ui/react';
-import companyLogo from '../../assets/img/Logo/logo.svg';
+import companyLogo from '../../assets/img/Logo/logo.png';
 import { Image } from '@chakra-ui/react';
 import styles from './Sidebar.module.css';
 import HelpSection from './components/HelpSection';
