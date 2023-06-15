@@ -8,6 +8,10 @@ import walmart from '../../assets/img/MiniSidebar/walmart.png';
 import tokopedia from '../../assets/img/MiniSidebar/tokopedia.png';
 import bukalapak from '../../assets/img/MiniSidebar/bukalapak.png';
 import tiki from '../../assets/img/MiniSidebar/tiki.jpeg';
+import Flipkart from '../../assets/img/MiniSidebar/Flipkart.jpeg';
+import ASDA from '../../assets/img/MiniSidebar/ASDA.svg';
+
+
 
 import { Image, Spacer } from '@chakra-ui/react';
 import { Avatar, AvatarBadge, AvatarGroup } from '@chakra-ui/react'
@@ -220,6 +224,44 @@ const MiniSidebar = () => {
             src={bukalapak}
             boxSize="1.3rem"
             _hover={isSelected('Bukalapak') ? {} : { transform: 'scale(1.2)', cursor: 'pointer' }}
+          />
+        </Box>
+      </Tooltip>
+
+      {/* Flipkart */}
+      <Tooltip label='Flipkart' placement='right' hasArrow>
+        <Box
+          borderWidth={isSelected('Flipkart') ? '3px' : '1px'}
+          borderRadius='5px'
+          borderColor={isSelected('Flipkart') ? '#68D391' : '#303a49'}
+          my="0.5rem"
+          onClick={() => handleIconClick('Flipkart')}
+          p={isSelected('Flipkart') ? '0.5rem' : '0.25rem'}
+          bg={isSelected('Flipkart') ? 'transparent' : '#1f2937'}
+        >
+          <Image
+            src={Flipkart}
+            boxSize="1.3rem"
+            _hover={isSelected('Flipkart') ? {} : { transform: 'scale(1.2)', cursor: 'pointer' }}
+          />
+        </Box>
+      </Tooltip>
+
+       {/* ASDA */}
+       <Tooltip label='ASDA' placement='right' hasArrow>
+        <Box
+          borderWidth={isSelected('ASDA') ? '3px' : '1px'}
+          borderRadius='5px'
+          borderColor={isSelected('ASDA') ? '#68D391' : '#303a49'}
+          my="0.5rem"
+          onClick={() => handleIconClick('ASDA')}
+          p={isSelected('ASDA') ? '0.5rem' : '0.25rem'}
+          bg={isSelected('ASDA') ? 'transparent' : '#1f2937'}
+        >
+          <Image
+            src={ASDA}
+            boxSize="1.3rem"
+            _hover={isSelected('ASDA') ? {} : { transform: 'scale(1.2)', cursor: 'pointer' }}
           />
         </Box>
       </Tooltip>

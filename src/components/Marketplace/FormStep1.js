@@ -23,6 +23,8 @@ import walmart from '../../assets/img/MiniSidebar/walmart.png';
 import tokopedia from '../../assets/img/MiniSidebar/tokopedia.png';
 import bukalapak from '../../assets/img/MiniSidebar/bukalapak.png';
 import tiki from '../../assets/img/MiniSidebar/tiki.jpeg';
+import Flipkart from '../../assets/img/MiniSidebar/Flipkart.jpeg';
+import ASDA from '../../assets/img/MiniSidebar/ASDA.svg';
 
 const platforms = [
   { label: 'Shopee', logo: ShopeeLogo },
@@ -32,6 +34,8 @@ const platforms = [
   { label: 'Walmart', logo: walmart },
   { label: 'Tokopedia', logo: tokopedia },
   { label: 'Bukalapak', logo: bukalapak },
+  { label: 'Flipkart', logo: Flipkart },
+  { label: 'ASDA', logo: ASDA },
   { label: 'Tiki', logo: tiki },
 ];
 
