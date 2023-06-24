@@ -1,3 +1,16 @@
+import { AddIcon } from '@chakra-ui/icons';
+import ShopeeLogo from '../../assets/img/MiniSidebar/Shopee_logo.svg';
+import lazada from '../../assets/img/MiniSidebar/lazada.png';
+import amazonlogo from '../../assets/img/MiniSidebar/amazon.png';
+import instacart from '../../assets/img/MiniSidebar/instacart.png';
+import walmart from '../../assets/img/MiniSidebar/walmart.png';
+import tokopedia from '../../assets/img/MiniSidebar/tokopedia.png';
+import bukalapak from '../../assets/img/MiniSidebar/bukalapak.png';
+import tiki from '../../assets/img/MiniSidebar/tiki.jpeg';
+import Flipkart from '../../assets/img/MiniSidebar/Flipkart.jpeg';
+import ASDA from '../../assets/img/MiniSidebar/ASDA.svg';
+
+
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import {
@@ -35,7 +48,7 @@ import {
 } from "components/scrollbar/Scrollbar";
 import { Scrollbars } from "react-custom-scrollbars-2";
 import { BiHelpCircle } from "react-icons/bi";
-import { FaRobot, FaBrain, FaChartBar, FaAd, FaChartLine } from 'react-icons/fa';
+import { FaRobot, FaBrain, FaChartBar, FaAd, FaChartLine, FaPlus } from 'react-icons/fa';
 
 import { AiOutlineQuestionCircle, AiOutlineMessage, AiOutlineFileText, AiOutlineArrowRight } from 'react-icons/ai';
 import DummyList from './components/DummyList';
@@ -46,6 +59,7 @@ function Sidebar(props) {
   const [isDummyListOpen, setIsDummyListOpen] = useState(false);
   const [isDummyList1Open, setIsDummyList1Open] = useState(false);
   const [isDummyList2Open, setIsDummyList2Open] = useState(false);
+  const [isDummyList22Open, setIsDummyList22Open] = useState(false);
   const [isDummyList3Open, setIsDummyList3Open] = useState(false);
   const [isDummyList4Open, setIsDummyList4Open] = useState(false);
   const [isHelpPopupOpen, setIsHelpPopupOpen] = useState(false);
@@ -71,6 +85,8 @@ function Sidebar(props) {
       setIsDummyList2Open(false);
       setIsDummyList3Open(false);
       setIsDummyList4Open(false);
+      setIsDummyList22Open(false);
+
       setTimeout(() => {
         setCollapsed(!collapsed);
       }, 300);
@@ -153,6 +169,7 @@ function Sidebar(props) {
     setIsDummyListOpen(listIndex === 0 ? !isDummyListOpen : false);
     setIsDummyList1Open(listIndex === 1 ? !isDummyList1Open : false);
     setIsDummyList2Open(listIndex === 2 ? !isDummyList2Open : false);
+    setIsDummyList22Open(listIndex === 22 ? !isDummyList22Open : false);
     setIsDummyList3Open(listIndex === 3 ? !isDummyList3Open : false);
     setIsDummyList4Open(listIndex === 4 ? !isDummyList4Open : false);
   };
@@ -191,6 +208,19 @@ function Sidebar(props) {
             transition={variantChange}
           />
           <Box mt={50}>
+
+          <DummyList
+            collapsed={collapsed}
+            isDummyListOpen={isDummyList22Open}
+            setIsDummyListOpen={() => openDummyList(22)}
+            dummyName="Add a Platform"
+            icon={<FaPlus />}
+            subItems={["Shopee", "Lazada", "Amazon", "Instacart", "Walmart", "Tokopedia", "Bukalapak", "Tiki", "Flipkart", "ASDA"]}
+            subItemRoutes={["/shopee", "/lazada", "/amazon", "/instacart", "/walmart", "/tokopedia", "/bukalapak", "/tiki", "/flipkart", "/asda"]}
+            textColor={textColor}
+          />
+
+
           <DummyList
             collapsed={collapsed}
             isDummyListOpen={isDummyList2Open}
