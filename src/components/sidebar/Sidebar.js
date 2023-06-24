@@ -151,7 +151,8 @@ function Sidebar(props) {
     '/Digital_Shelf_Analysis_table',
     '/sales',
     '/traffic-reporting',
-    '/target-and-search'
+    '/target-and-search',
+    '/admin/add-platform'
   ];
 
   const openChatSupport = () => {
@@ -186,7 +187,7 @@ function Sidebar(props) {
         overflowX="hidden"
         boxShadow={shadow}
         position="fixed"
-        ml="60px"
+        ml="0px"
         pt="20px"
         className={styles.sidebar}
       >
@@ -209,16 +210,18 @@ function Sidebar(props) {
           />
           <Box mt={50}>
 
-          <DummyList
-            collapsed={collapsed}
-            isDummyListOpen={isDummyList22Open}
-            setIsDummyListOpen={() => openDummyList(22)}
-            dummyName="Add a Platform"
-            icon={<FaPlus />}
-            subItems={["Shopee", "Lazada", "Amazon", "Instacart", "Walmart", "Tokopedia", "Bukalapak", "Tiki", "Flipkart", "ASDA"]}
-            subItemRoutes={["/shopee", "/lazada", "/amazon", "/instacart", "/walmart", "/tokopedia", "/bukalapak", "/tiki", "/flipkart", "/asda"]}
-            textColor={textColor}
-          />
+         <DummyList
+         collapsed={collapsed}
+         isDummyListOpen={isDummyList22Open}
+         setIsDummyListOpen={() => openDummyList(22)}
+         dummyName="Add a Platform"
+         icon={<FaPlus />}
+         subItems={["Add New Platform","Shopee", "Lazada", "Amazon", "Instacart", "Walmart", "Tokopedia", "Bukalapak", "Tiki", "Flipkart", "ASDA"]}
+         subItemRoutes={["/admin/add-platform","/shopee", "/lazada", "/amazon", "/instacart", "/walmart", "/tokopedia", "/bukalapak", "/tiki", "/flipkart", "/asda"]}
+         subItemLogos={[null, ShopeeLogo, lazada, amazonlogo, instacart, walmart, tokopedia, bukalapak, tiki, Flipkart, ASDA]} // New prop
+         textColor={textColor}
+       />
+       
 
 
           <DummyList
