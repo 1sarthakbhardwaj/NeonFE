@@ -309,7 +309,7 @@ const MiniSidebar = () => {
         h='18px'
         w='18px'
         color={navbarIcon}
-        as={colorMode === "light" ? IoMdMoon : IoMdSunny}
+        as={colorMode === "dark" ? IoMdMoon : IoMdSunny}
       />
     </Button>
       </VStack>
