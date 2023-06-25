@@ -272,7 +272,7 @@ function Sidebar(props) {
          dummyName="Add a Platform"
          icon={<FaPlus />}
          subItems={["Add New Platform","Shopee", "Lazada", "Amazon", "Instacart", "Walmart", "Tokopedia", "Bukalapak", "Tiki", "Flipkart", "ASDA"]}
-         subItemRoutes={["admin/add-platform","/shopee", "/lazada", "/amazon", "/instacart", "/walmart", "/tokopedia", "/bukalapak", "/tiki", "/flipkart", "/asda"]}
+         subItemRoutes={["/admin/add-platform","/shopee", "/lazada", "/amazon", "/instacart", "/walmart", "/tokopedia", "/bukalapak", "/tiki", "/flipkart", "/asda"]}
          subItemLogos={[null, ShopeeLogo, lazada, amazonlogo, instacart, walmart, tokopedia, bukalapak, tiki, Flipkart, ASDA]} // New prop
          textColor={textColor}
        />
