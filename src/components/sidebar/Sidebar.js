@@ -9,12 +9,13 @@ import bukalapak from '../../assets/img/MiniSidebar/bukalapak.png';
 import tiki from '../../assets/img/MiniSidebar/tiki.jpeg';
 import Flipkart from '../../assets/img/MiniSidebar/Flipkart.jpeg';
 import ASDA from '../../assets/img/MiniSidebar/ASDA.svg';
-
+import Select from 'react-select';
 
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import {
   Box,
+  Select,
   VStack,
   Flex,
   Popover,
@@ -175,6 +176,22 @@ function Sidebar(props) {
     setIsDummyList4Open(listIndex === 4 ? !isDummyList4Open : false);
   };
 
+  const marketplaces = [
+    { name: "Shopee", logo: ShopeeLogo, route: "/shopee" },
+    { name: "Lazada", logo: lazada, route: "/lazada" },
+    { name: "Amazon", logo: amazonlogo, route: "/amazon" },
+    { name: "Instacart", logo: instacart, route: "/instacart" },
+    { name: "Walmart", logo: walmart, route: "/walmart" },
+    { name: "Tokopedia", logo: tokopedia, route: "/tokopedia" },
+    { name: "Bukalapak", logo: bukalapak, route: "/bukalapak" },
+    { name: "Tiki", logo: tiki, route: "/tiki" },
+    { name: "Flipkart", logo: Flipkart, route: "/flipkart" },
+    { name: "ASDA", logo: ASDA, route: "/asda" },
+  ];
+  
+  const [selectedMarketplace, setSelectedMarketplace] = useState(null);
+
+
   return (
     <>
       <MiniSidebar />
@@ -210,6 +227,18 @@ function Sidebar(props) {
           />
           <Box mt={50}>
 
+          <Select placeholder="Select a marketplace" onChange={(e) => setSelectedMarketplace(e.target.value)} width="80%" margin="0 auto 20px">
+             {marketplaces.map((marketplace, index) => (
+               <option key={index} value={marketplace.route}>
+                 <Flex alignItems="center">
+                   <Image src={marketplace.logo} alt={marketplace.name} boxSize="20px" />
+                   <Box ml={2}>{marketplace.name}</Box>
+                 </Flex>
+               </option>
+             ))}
+             textColor={textColor}
+           </Select>  
+
          <DummyList
          collapsed={collapsed}
          isDummyListOpen={isDummyList22Open}
@@ -217,7 +246,7 @@ function Sidebar(props) {
          dummyName="Add a Platform"
          icon={<FaPlus />}
          subItems={["Add New Platform","Shopee", "Lazada", "Amazon", "Instacart", "Walmart", "Tokopedia", "Bukalapak", "Tiki", "Flipkart", "ASDA"]}
-         subItemRoutes={["/admin/add-platform","/shopee", "/lazada", "/amazon", "/instacart", "/walmart", "/tokopedia", "/bukalapak", "/tiki", "/flipkart", "/asda"]}
+         subItemRoutes={["admin/add-platform","/shopee", "/lazada", "/amazon", "/instacart", "/walmart", "/tokopedia", "/bukalapak", "/tiki", "/flipkart", "/asda"]}
          subItemLogos={[null, ShopeeLogo, lazada, amazonlogo, instacart, walmart, tokopedia, bukalapak, tiki, Flipkart, ASDA]} // New prop
          textColor={textColor}
        />
