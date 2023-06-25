@@ -18,7 +18,11 @@ import {
   Select,
   VStack,
   Flex,
-  Popover,
+  Menu, 
+  MenuButton, 
+  MenuItem, 
+  MenuList,
+  Button,
   PopoverTrigger,
   PopoverContent,
   PopoverArrow,
@@ -34,6 +38,7 @@ import {
   useDisclosure,
   useColorModeValue,
 } from '@chakra-ui/react';
+import { ChevronDownIcon } from '@chakra-ui/icons';
 import companyLogo from '../../assets/img/Logo/logo.png';
 import { Image } from '@chakra-ui/react';
 import styles from './Sidebar.module.css';
@@ -54,6 +59,30 @@ import { FaRobot, FaBrain, FaChartBar, FaAd, FaChartLine, FaPlus } from 'react-i
 import { AiOutlineQuestionCircle, AiOutlineMessage, AiOutlineFileText, AiOutlineArrowRight } from 'react-icons/ai';
 import DummyList from './components/DummyList';
 
+const CustomSelect = ({ options, value, onChange }) => {
+  return (
+    <Menu>
+      <MenuButton as={Button} rightIcon={<ChevronDownIcon />} w="90%" ml={2} my={2}>
+        <Flex alignItems="center" justifyContent="center">
+          {value?.logo ? <Image src={value.logo} alt={value.name} boxSize="20px" /> : null}
+          <Box ml={4}>{value?.name || 'Select a marketplace'}</Box>
+        </Flex>
+      </MenuButton>
+      <MenuList>
+        {options.map((option, index) => (
+          <MenuItem key={index} onClick={() => onChange(option)}>
+            <Flex alignItems="center">
+              <Image src={option.logo} alt={option.name} boxSize="20px" />
+              <Box ml={4}>{option.name}</Box>
+            </Flex>
+          </MenuItem>
+        ))}
+      </MenuList>
+    </Menu>
+  );
+};
+
+
 function Sidebar(props) {
   const { routes } = props;
   const [collapsed, setCollapsed] = useState(false);
@@ -64,6 +93,7 @@ function Sidebar(props) {
   const [isDummyList3Open, setIsDummyList3Open] = useState(false);
   const [isDummyList4Open, setIsDummyList4Open] = useState(false);
   const [isHelpPopupOpen, setIsHelpPopupOpen] = useState(false);
+
 
   let variantChange = "0.2s linear";
   let shadow = useColorModeValue(
@@ -227,17 +257,13 @@ function Sidebar(props) {
           />
           <Box mt={50}>
 
-          <Select placeholder="Select a marketplace" onChange={(e) => setSelectedMarketplace(e.target.value)} width="80%" margin="0 auto 20px">
-             {marketplaces.map((marketplace, index) => (
-               <option key={index} value={marketplace.route}>
-                 <Flex alignItems="center">
-                   <Image src={marketplace.logo} alt={marketplace.name} boxSize="20px" />
-                   <Box ml={2}>{marketplace.name}</Box>
-                 </Flex>
-               </option>
-             ))}
-             textColor={textColor}
-           </Select>  
+
+          <CustomSelect
+            options={marketplaces}
+            value={selectedMarketplace}
+            onChange={setSelectedMarketplace}
+          />
+
 
          <DummyList
          collapsed={collapsed}
