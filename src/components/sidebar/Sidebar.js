@@ -9,7 +9,7 @@ import bukalapak from '../../assets/img/MiniSidebar/bukalapak.png';
 import tiki from '../../assets/img/MiniSidebar/tiki.jpeg';
 import Flipkart from '../../assets/img/MiniSidebar/Flipkart.jpeg';
 import ASDA from '../../assets/img/MiniSidebar/ASDA.svg';
-import Select from 'react-select';
+
 
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
